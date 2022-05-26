@@ -1,0 +1,22 @@
+server:
+  port: 1000
+  
+spring: 
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+      - id : Details
+        uri: lb://Details/
+        predicates:
+        - Path=/d/**
+      - id: Marks
+        uri: lb://Marks
+        predicates:
+        - Path=/m/**
+          
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka
